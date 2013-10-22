@@ -1,0 +1,32 @@
+{
+  "name": "jquery.picplus.queueup",
+  "version": "0.0.0",
+  "authors": [
+    "Matthew Tretter <m@tthewwithanm.com>",
+    "Eric Eldredge <lettertwo@gmail.com>"
+  ],
+  "description": "Load your picplus images using queueup.js.",
+  "main": "jquery.picplus.queueup.js",
+  "keywords": [
+    "jquery",
+    "image",
+    "picture",
+    "picplus",
+    "load",
+    "responsive",
+    "svg"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/matthewwithanm/jquery.picplus.queueup",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.picplus": "~1.0",
+    "queueup": "~1.0"
+  }
+}
