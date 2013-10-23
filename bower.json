@@ -26,7 +26,5 @@
     "tests"
   ],
   "dependencies": {
-    "jquery.picplus": "~1.0",
-    "queueup": "~1.0"
   }
 }
