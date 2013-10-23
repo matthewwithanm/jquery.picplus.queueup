@@ -1,6 +1,6 @@
 {
   "name": "jquery.picplus.queueup",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Use a load queue to load your picplus pics.",
   "author": "Matthew Tretter <m@tthewwithanm.com>",
   "main": "jquery.picplus.queueup.js",
