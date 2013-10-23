@@ -2,15 +2,21 @@
 (function ($, queueup) {
     'use strict';
 
-    var loadqueue;  // a 'global' loadqueue for every instance of picplus.
+    var getMasterQueue,
+        masterQueue = null;  // a default master load queue.
+
+    getMasterQueue = function () {
+        if (!masterQueue) {
+            masterQueue = queueup({autostart: true});
+        }
+        return masterQueue;
+    };
 
     $.picplus.config().plugins.push({
         initialize: function (picplus) {
             picplus.loadSource = function (src, opts) {
-                var promise;
-                if (!loadqueue) {
-                    loadqueue = queueup({autostart: true});
-                }
+                var promise,
+                    loadqueue = (opts && opts.queueup && opts.queueup.queue) || getMasterQueue();
                 promise = loadqueue.load(src, opts);
                 return promise;
             };
