@@ -9,10 +9,9 @@
             picplus.loadSource = function (src, opts) {
                 var promise;
                 if (!loadqueue) {
-                    loadqueue = queueup();
+                    loadqueue = queueup({autostart: true});
                 }
                 promise = loadqueue.load(src, opts);
-                loadqueue.start();
                 return promise;
             };
             picplus._loadSource = function ($source) {
