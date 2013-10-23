@@ -16,7 +16,8 @@
         initialize: function (picplus) {
             picplus.loadSource = function (src, opts) {
                 var promise,
-                    loadqueue = (opts && opts.queueup && opts.queueup.queue) || getMasterQueue();
+                    ppOpts = picplus.options,
+                    loadqueue = (ppOpts && ppOpts.queueup && ppOpts.queueup.queue) || getMasterQueue();
                 promise = loadqueue.load(src, opts);
                 return promise;
             };
