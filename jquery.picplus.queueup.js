@@ -15,12 +15,13 @@
 
     $.picplus.addPlugin({
         create: function (picplus) {
-            picplus.loadSource = function (url, opts, $source, done, fail) {
+            picplus.loadSource = function (opts, done, fail) {
                 var ppOpts = picplus.options,
+                    $source = opts.$el,
                     loadqueue = (ppOpts && ppOpts.queueup && ppOpts.queueup.queue) || getMasterQueue();
                 $source.data(
                     PROMISE_DATA,
-                    loadqueue.load(url, opts).then(done, fail)
+                    loadqueue.load(opts).then(done, fail)
                 );
             };
             picplus._loadSource = function ($source, done, fail) {
