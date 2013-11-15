@@ -13,7 +13,7 @@
     };
 
     $.picplus.config().plugins.push({
-        initialize: function (picplus) {
+        create: function (picplus) {
             picplus.loadSource = function (src, opts) {
                 var promise,
                     ppOpts = picplus.options,
@@ -29,6 +29,7 @@
                 }
                 return $.picplus.PicPlus.prototype._loadSource.call(this, $source);
             };
+            return {};
         }
     });
 
