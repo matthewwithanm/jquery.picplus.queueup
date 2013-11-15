@@ -3,6 +3,7 @@
     'use strict';
 
     var getMasterQueue,
+        PROMISE_DATA = 'picplus-queueup-promise',
         masterQueue = null;  // a default master load queue.
 
     getMasterQueue = function () {
@@ -14,20 +15,23 @@
 
     $.picplus.addPlugin({
         create: function (picplus) {
-            picplus.loadSource = function (src, opts) {
-                var promise,
-                    ppOpts = picplus.options,
+            picplus.loadSource = function (url, opts, $source, done, fail) {
+                var ppOpts = picplus.options,
                     loadqueue = (ppOpts && ppOpts.queueup && ppOpts.queueup.queue) || getMasterQueue();
-                promise = loadqueue.load(src, opts);
-                return promise;
+                $source.data(
+                    PROMISE_DATA,
+                    loadqueue.load(url, opts).then(done, fail)
+                );
             };
-            picplus._loadSource = function ($source) {
-                var promise = $source.data('promise');
-                // If this source is already pending, promote it.
-                if (promise && promise.state() === 'pending') {
-                    return promise.promote();
+            picplus._loadSource = function ($source, done, fail) {
+                var promise;
+                if (!this.isLoaded($source)) {
+                    promise = $source.data(PROMISE_DATA);
+                    if (promise) {
+                        promise.promote();
+                    }
                 }
-                return $.picplus.PicPlus.prototype._loadSource.call(this, $source);
+                $.picplus.PicPlus.prototype._loadSource.call(this, $source, done, fail);
             };
             return {};
         }
