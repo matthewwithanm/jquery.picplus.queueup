@@ -12,7 +12,7 @@
         return masterQueue;
     };
 
-    $.picplus.config().plugins.push({
+    $.picplus.addPlugin({
         create: function (picplus) {
             picplus.loadSource = function (src, opts) {
                 var promise,
